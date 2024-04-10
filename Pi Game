@@ -1,0 +1,187 @@
+from time import sleep
+from machine import Pin, PWM
+
+pwm = PWM(Pin(17))
+
+pwm.freq(50)
+
+one=Pin(1,Pin.IN,Pin.PULL_UP)
+two=Pin(2,Pin.IN,Pin.PULL_UP)
+three=Pin(3,Pin.IN,Pin.PULL_UP)
+four=Pin(4,Pin.IN,Pin.PULL_UP)
+five=Pin(5,Pin.IN,Pin.PULL_UP)
+six=Pin(6,Pin.IN,Pin.PULL_UP)
+seven=Pin(7,Pin.IN,Pin.PULL_UP)
+eight=Pin(8,Pin.IN,Pin.PULL_UP)
+nine=Pin(9,Pin.IN,Pin.PULL_UP)
+
+LED1=Pin(15,Pin.OUT)
+LED2=Pin(14,Pin.OUT)
+LED3=Pin(13,Pin.OUT)
+
+num=0
+
+LED1.off()
+LED2.off()
+LED3.off()
+pwm.duty_u16(1500)
+
+while True:
+    #print(one.value(),two.value(),three.value(),four.value(),five.value(),six.value(),seven.value(),eight.value(),nine.value(),)
+    #sleep(1)
+    #pi= 3.14159265358979
+    if three.value()==0: #off=1
+        if num==0:
+            print('3')
+            num=num+1
+            LED1.on()
+            sleep(0.5)
+            LED1.off()
+        elif num==9:
+            print('3')
+            num=num+1
+            LED3.on()
+            sleep(0.5)
+            LED3.off()
+        else:
+            pwm.duty_u16(4500)
+            break
+        
+    if one.value()==0:
+        if num==1:
+            print('1')
+            num=num+1
+            LED2.on()
+            sleep(0.5) #makes sure doesn't accidently detect twice
+            LED2.off()
+        elif num==3:
+            print('1')
+            num=num+1
+            LED1.on()
+            sleep(0.5)
+            LED1.off()
+        else:
+            pwm.duty_u16(4500)
+            break
+        
+    if four.value()==0:
+        if num==2:
+            print('4')
+            num=num+1
+            LED3.on()
+            sleep(0.5)
+            LED3.off()
+        else:
+            pwm.duty_u16(4500)
+            break
+        
+    if five.value()==0:
+        if num==4:
+            print('5')
+            num=num+1
+            LED2.on()
+            sleep(0.5)
+            LED2.off()
+        elif num==8:
+            print('5')
+            num=num+1
+            LED3.on()
+            sleep(0.5)
+            LED3.off()
+        elif num==10:
+            print('5')
+            num=num+1
+            LED1.on()
+            sleep(0.5)
+            LED1.off()
+        else:
+            pwm.duty_u16(4500)
+            break
+        
+    if nine.value()==0:
+        if num==5:
+            print('9')
+            num=num+1
+            LED3.on()
+            sleep(0.5)
+            LED3.off()
+        elif num==12:
+            print('9')
+            num=num+1
+            LED3.on()
+            sleep(0.5)
+            LED3.off()
+        elif num==14:
+            print('9')
+            num=num+1
+            #light sequence
+            LED1.on()
+            sleep(0.15)
+            LED2.on()
+            sleep(0.15)
+            LED3.on()
+            sleep(0.8)
+            LED3.off()
+            sleep(0.15)
+            LED2.off()
+            sleep(0.15)
+            LED1.off()
+            sleep(0.8)
+            LED3.on()
+            sleep(0.15)
+            LED2.on()
+            sleep(0.15)
+            LED1.on()
+            sleep(0.8)
+            LED1.off()
+            sleep(0.15)
+            LED2.off()
+            sleep(0.15)
+            LED3.off()
+            break
+        else:
+            pwm.duty_u16(4500)
+            break
+
+    if two.value()==0:
+        if num==6:
+            print('2')
+            num=num+1
+            LED1.on()
+            sleep(0.5)
+            LED1.off()
+        else:
+            pwm.duty_u16(4500)
+            break
+        
+    if six.value()==0:
+        if num==7:
+            print('6')
+            num=num+1
+            LED2.on()
+            sleep(0.5)
+            LED2.off()
+        else:
+            pwm.duty_u16(4500)
+            break
+        
+    if eight.value()==0:
+        if num==11:
+            print('8')
+            num=num+1
+            LED2.on()
+            sleep(0.5)
+            LED2.off()
+        else:
+            pwm.duty_u16(4500)
+            break
+        
+    if seven.value()==0:
+        if num==13:
+            print('7')
+            LED1.on()
+            sleep(0.5)
+            LED1.off()
+        else:
+            pwm.duty_u16(4500)
+            break
