@@ -1,0 +1,149 @@
+from machine import Pin, PWM
+from time import sleep
+import time
+import math
+
+timeelapsed = 0 
+trigger= Pin(2,Pin.OUT)   
+echo= Pin(3,Pin.IN)
+
+LED1=Pin(0,Pin.OUT)
+LED2=Pin(8,Pin.OUT)
+LED3=Pin(11,Pin.OUT)
+LED4=Pin(13,Pin.OUT)
+LED5=Pin(15,Pin.OUT)
+
+LED1.off()
+LED2.off()
+LED3.off()
+LED4.off()
+LED5.off()
+
+
+def distance(): #ultrasonic sensor function
+    timeelapsed=0
+    trigger.off() #reset trigger
+    sleep(0.2)
+    trigger.on()
+    sleep(0.00001) #send a short 0.01ms trigger pulse
+    trigger.off()
+    while echo.value()==0:
+        start_time= time.ticks_us() #save start time
+    while echo.value()==1:
+        stop_time=time.ticks_us() #get the arrival time
+    timeelapsed = stop_time-start_time
+   # multiply with the sound speed (34300 cm/s)
+    obstacle_distance = (timeelapsed *0.0343)/2    # dis = speed*time speed of sound=343.2m/s  . divide by 2 as we half the distance echo travelled
+ #   print("distane from object is", obstacle_distance,"cm")
+    return obstacle_distance #distance in cm
+
+#sleep(7)
+#print('ready')
+while True:
+    if distance()<70:
+        #print('on')
+        
+        LED1.on()
+        sleep(0.7)
+        LED1.off()
+        LED2.on()
+        sleep(0.7)
+        LED2.off()
+        LED3.on()
+        sleep(0.7)
+        LED3.off()
+        LED4.on()
+        sleep(0.7)
+        LED4.off()
+        LED5.on()
+        sleep(0.7)
+        LED5.off()
+        
+        LED1.on()
+        sleep(0.7)
+        LED2.on()
+        sleep(0.7)
+        LED3.on()
+        sleep(0.7)
+        LED4.on()
+        sleep(0.7)
+        LED5.on()
+        sleep(5)
+        
+        LED1.off()
+        LED2.off()
+        LED3.off()
+        LED4.off()
+        LED5.off()
+        sleep(2)
+        
+        LED1.on()
+        LED2.on()
+        LED3.on()
+        LED4.on()
+        LED5.on()
+        sleep(3)
+        
+        LED1.off()
+        LED2.off()
+        LED3.off()
+        LED4.off()
+        LED5.off()
+        sleep(2)
+        
+        LED1.on()
+        sleep(0.7)
+        LED1.off()
+        LED2.on()
+        sleep(0.7)
+        LED2.off()
+        LED3.on()
+        sleep(0.7)
+        LED3.off()
+        LED4.on()
+        sleep(0.7)
+        LED4.off()
+        LED5.on()
+        sleep(0.7)
+        LED5.off()
+        
+        LED1.on()
+        sleep(0.7)
+        LED2.on()
+        sleep(0.7)
+        LED3.on()
+        sleep(0.7)
+        LED4.on()
+        sleep(0.7)
+        LED5.on()
+        sleep(5)
+        
+        LED1.off()
+        LED2.off()
+        LED3.off()
+        LED4.off()
+        LED5.off()
+        sleep(2)
+        
+        LED1.on()
+        LED2.on()
+        LED3.on()
+        LED4.on()
+        LED5.on()
+        sleep(3)
+        
+        LED1.off()
+        LED2.off()
+        LED3.off()
+        LED4.off()
+        LED5.off()
+        sleep(100)
+        
+        
+        
+    else:
+        LED1.off()
+        LED2.off()
+        LED3.off()
+        LED4.off()
+        LED5.off()
