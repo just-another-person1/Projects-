@@ -1,0 +1,68 @@
+from machine import Pin, PWM
+from time import sleep
+import time
+import math
+
+timeelapsed = 0 
+trigger1= Pin(2,Pin.OUT)   
+echo1= Pin(3,Pin.IN)
+
+trigger2= Pin(4,Pin.OUT)   
+echo2= Pin(5,Pin.IN)
+
+pwm = PWM(Pin(15))
+
+pwm.freq(50)
+
+pwm.duty_u16(3500)
+
+
+def distance1(): #ultrasonic sensor function
+    timeelapsed=0
+    trigger1.off() #reset trigger
+    sleep(0.2)
+    trigger1.on()
+    sleep(0.00001) #send a short 0.01ms trigger pulse
+    trigger1.off()
+    while echo1.value()==0:
+        start_time= time.ticks_us() #save start time
+    while echo1.value()==1:
+        stop_time=time.ticks_us() #get the arrival time
+    timeelapsed = stop_time-start_time
+   # multiply with the sound speed (34300 cm/s)
+    obstacle_distance = (timeelapsed *0.0343)/2    # dis = speed*time speed of sound=343.2m/s  . divide by 2 as we half the distance echo travelled
+    #print("distane from object is", obstacle_distance,"cm")
+    return obstacle_distance #distance in cm
+    left_distance=distance1()
+    sleep(1)
+    
+    
+def distance2(): #ultrasonic sensor function
+    timeelapsed=0
+    trigger2.off() #reset trigger
+    sleep(0.2)
+    trigger2.on()
+    sleep(0.00001) #send a short 0.01ms trigger pulse
+    trigger2.off()
+    while echo2.value()==0:
+        start_time= time.ticks_us() #save start time
+    while echo2.value()==1:
+        stop_time=time.ticks_us() #get the arrival time
+    timeelapsed = stop_time-start_time
+   # multiply with the sound speed (34300 cm/s)
+    obstacle_distance = (timeelapsed *0.0343)/2    # dis = speed*time speed of sound=343.2m/s  . divide by 2 as we half the distance echo travelled
+    #print("distane from object is", obstacle_distance,"cm")
+    return obstacle_distance #distance in cm
+    right_distance= distance2()
+    sleep(1)
+    
+
+while True:
+    if distance1()<40:
+        pwm.duty_u16(4500)
+        print('on1')
+    elif distance2()<40:
+        print('on2')
+        pwm.duty_u16(2000)
+
+        
