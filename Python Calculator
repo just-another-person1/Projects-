@@ -1,0 +1,36 @@
+print('Hi!! Do you want to...')
+print('a) add')
+print('b) subtract')
+print('c) multiply')
+print('d) divide')
+
+while True:
+    operation=input('Choose your operation:')
+    if operation in ('a', 'b', 'c', 'd'):
+        x=float(input('first number:'))
+        y=float(input('second number:'))
+
+    else:
+        print('Whoops! Please input a valid operation :)')
+
+    if operation=='a':
+        result=x+y
+        print(result)
+
+    if operation=='b':
+        result=x-y
+        print(result)
+
+    if operation=='c':
+        result=x*y
+        print(result)
+
+    if operation=='d':
+        result=x/y
+        print(result)
+
+
+    print('Do you want to do another calculation?')
+    answer=input('yes/no  ')
+    if answer=='no':
+        break
