@@ -1,0 +1,55 @@
+import random
+import time
+from time import sleep
+
+fact_list=['A cloud weighs around a million tonnes?', 'A chicken once lived for 18 months without a head?', 'Wearing a tie can reduce blood flow to the brain by 7.5%?', 'You can die laughing? Better be careful lol','Snails have teeth?', 'Bananas are radioactive?']  
+joke_list=['How do trees get on the Internet?','What do computers like to eat?', 'What do you call a space magician?', 'Why did the chicken cross the Web?']
+riddle_list=['What has a neck but no head?', 'What word contains 26 letters but only has three syllables?', 'What comes down but never goes up?', 'What is full of holes but still holds water?']
+
+indicator=input('Hi!! How are you today?   ')
+
+while True: 
+    if indicator=='I am bored' or 'bored' or "I'm bored":
+        x=random.choice(fact_list)
+        y=random.choice(joke_list)
+        z=random.choice(riddle_list)
+        print('Well, what would you like to hear today?')
+        print('a) A random fact, b) a joke, or c) a riddle')
+        option=input('select your option (a/b/c):')
+            
+        if option=='a':
+            print('Did you know...')
+            sleep(2)
+            print(x)
+        if option=='b':
+            print(y)
+            sleep(3)
+            if y=='How do trees get on the Internet?':
+                print('by logging in!')
+            if y=='What do computers like to eat?':
+                print('Chips.')
+            if y=='What do you call a space magician?':
+                print('A flying saucerer.')
+            if y=='Why did the chicken cross the Web?':
+                print('To get to the other site!')
+        if option=='c':
+            print(z)
+            sleep(3)
+            if z=='What has a neck but no head?':
+                print('A bottle!')
+            if z=='What word contains 26 letters but only has three syllables?':
+                print('The alphebet!')
+            if z=='What comes down but never goes up?':
+                print('rain!')
+            if z=='What is full of holes but still holds water?':
+                print('a sponge')
+
+        sleep(2)
+        print('Do you want another?')
+        answer=input('yes/no  ')
+        if answer=='no':
+            break
+      
+    else:
+        print('Whoops! Please choose a valid option')
+        
